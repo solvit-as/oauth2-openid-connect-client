@@ -424,7 +424,7 @@ class OpenIDConnectProvider extends AbstractProvider
      * Default: token endpoint URL per RFC 7523 §3.
      * Override in subclasses if the authorization server requires a different audience
      * (e.g. the issuer URL instead of the token endpoint).
-     * 
+     *
      * See
      * https://datatracker.ietf.org/doc/draft-ietf-oauth-rfc7523bis/06/
      * section 3
@@ -1116,9 +1116,9 @@ class OpenIDConnectProvider extends AbstractProvider
             $claimCheckerManager = new ClaimCheckerManager([
                 new IssuerChecker([$this->issuerUrl]),
                 new AudienceChecker($this->clientId),
-                new ExpirationTimeChecker($clock, static::CLOCK_SKEW_LEEWAY),
-                new NotBeforeChecker($clock, static::CLOCK_SKEW_LEEWAY),
-                new IssuedAtChecker($clock, static::CLOCK_SKEW_LEEWAY),
+                new ExpirationTimeChecker(static::CLOCK_SKEW_LEEWAY, false, $clock),
+                new NotBeforeChecker(static::CLOCK_SKEW_LEEWAY, false, $clock),
+                new IssuedAtChecker(static::CLOCK_SKEW_LEEWAY, false, $clock),
                 new NonceChecker($nonce),
             ]);
 
